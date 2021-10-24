@@ -1,23 +1,20 @@
-import React,{useState,useEffect} from 'react';
-import Navigation from '../components/navigation';
-import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import Navigation from '../components/navigation'
+import Logo from '../components/logo'
+import Manga from '../components/anime'
 const Home = () => {
-    
-    const [data,setData]=useState([])
+  const [data, setData] = useState([])
 
-    useEffect( ()=> {
-        
+  useEffect(() => {}, [])
 
-    },[])
+  return (
+    <div className='home'>
+      <Logo />
+      <Navigation />
 
-    return (
-        <div className="home">
-            
-            <Navigation></Navigation>
+      <Manga />
+    </div>
+  )
+}
 
-            Home
-        </div>
-    );
-};
-
-export default Home;
+export default Home
