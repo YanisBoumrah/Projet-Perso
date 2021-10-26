@@ -2,14 +2,14 @@ import React from 'react'
 import Logo from '../components/logo'
 import Navigation from '../components/navigation'
 
-const About = () => {
+const Recherche = () => {
   return (
-    <div className='about'>
+    <div className='recherche'>
       <Navigation />
       <Logo></Logo>
-      About
+      recherche
     </div>
   )
 }
 
-export default About
+export default Recherche

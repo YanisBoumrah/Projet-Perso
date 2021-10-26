@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const Manga = () => {
   const [anime, setAnime] = useState([])
   const [sortedData, setSortedData] = useState([])
+  const [search, setSearch] = useState('')
   const [playOnce, setPlayOnce] = useState(true)
   useEffect(() => {
     if (playOnce) {
@@ -15,8 +16,8 @@ const Manga = () => {
         .then(response => {
           console.log(response)
           setAnime(response.data.anime)
-          console.log('api reçu !!!')
-          console.log(response)
+          console.log('api reçu !!!', response)
+
           setPlayOnce(false)
         })
         .catch(err => {
@@ -28,7 +29,7 @@ const Manga = () => {
       const sortedArray = animeObj.sort((a, b) => {
         return b.season_year - a.season_year
       })
-      sortedArray.length = 30
+
       setSortedData(sortedArray)
     }
     sortedAnime()
@@ -37,15 +38,31 @@ const Manga = () => {
   return (
     <PageContainer>
       <WrapContent>
+        <StyledIn
+          type='text'
+          placeholder='Search... '
+          onChange={e => {
+            setSearch(e.target.value)
+          }}
+        />
         <Grille>
-          {sortedData.map(animes => (
-            <StyledDiv2>
-              <StledImg src={animes.image_url}></StledImg>
-              <StyledDiv>
-                <StyledH3>{animes.title}</StyledH3>
-              </StyledDiv>
-            </StyledDiv2>
-          ))}
+          {sortedData
+            .filter(animes => {
+              if (search == '') {
+                return animes
+              } else if (
+                animes.title.toLowerCase().includes(search.toLowerCase())
+              )
+                return animes
+            })
+            .map(animes => (
+              <StyledDiv2>
+                <StledImg src={animes.image_url}></StledImg>
+                <StyledDiv>
+                  <StyledH3>{animes.title}</StyledH3>
+                </StyledDiv>
+              </StyledDiv2>
+            ))}
         </Grille>
       </WrapContent>
     </PageContainer>
@@ -71,10 +88,7 @@ const StledImg = styled.img`
   border-radius: none;
   margin: 15px;
 `
-const StyledP = styled.p`
-  font-family: Noto Sans Mono;
-  color: white;
-`
+const StyledIn = styled.input``
 const StyledH3 = styled.h5`
   font-family: Noto Sans Mono;
   color: grey;

@@ -8,7 +8,6 @@ const Categorie = () => {
     <div>
       <Navigation />
       <Logo />
-      <h1>Categorie</h1>
       <Season></Season>
     </div>
   )

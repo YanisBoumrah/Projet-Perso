@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Season = () => {
   const [season, setSeason] = useState([])
   const [selectedRadio, setSelectedRadio] = useState('')
-  const radios = ['Summer', 'Fall', 'Automn', 'Winter']
+  const radios = ['Winter', 'Spring', 'Summer', 'Fall']
 
   useEffect(() => {
     axios({
@@ -26,34 +26,41 @@ const Season = () => {
 
   return (
     <PageContainer>
+      <StyledRadio className='sort-container'>
+        <StyledUl>
+          {radios.map(radio => {
+            return (
+              <li key={radio}>
+                <StyledInput
+                  type='radio'
+                  value={radio}
+                  id={radio}
+                  checked={radio === selectedRadio}
+                  onChange={e => setSelectedRadio(e.target.value)}
+                />
+                <label htmlFor={radio}>{radio}</label>
+              </li>
+            )
+          })}
+        </StyledUl>
+      </StyledRadio>
+      <CancelStyle>
+        {selectedRadio && (
+          <h5 onClick={() => setSelectedRadio('')}>Annuler recherche</h5>
+        )}
+      </CancelStyle>
       <WrapContent>
-        <StyledRadio className='sort-container'>
-          <StyledUl>
-            {radios.map(radio => {
-              return (
-                <li key={radio}>
-                  <StyledInput
-                    type='radio'
-                    value={radio}
-                    id={radio}
-                    checked={radio === selectedRadio}
-                    onChange={e => setSelectedRadio(e.target.value)}
-                  />
-                  <label htmlFor={radio}>{radio}</label>
-                </li>
-              )
-            })}
-          </StyledUl>
-        </StyledRadio>
         <Grille>
-          {season.map(animes => (
-            <StyledDiv2>
-              <StledImg src={animes.image_url}></StledImg>
-              <StyledDiv>
-                <StyledH3>{animes.title}</StyledH3>
-              </StyledDiv>
-            </StyledDiv2>
-          ))}
+          {season
+            .filter(animes => animes.season_name.includes(selectedRadio))
+            .map(animes => (
+              <StyledDiv2>
+                <StledImg src={animes.image_url}></StledImg>
+                <StyledDiv>
+                  <StyledH3>{animes.title}</StyledH3>
+                </StyledDiv>
+              </StyledDiv2>
+            ))}
         </Grille>
       </WrapContent>
     </PageContainer>
@@ -62,8 +69,14 @@ const Season = () => {
 
 export default Season
 
+const CancelStyle = styled.div`
+  margin: 0 5px 20px 15px;
+  width: 100%;
+`
+
 const StyledInput = styled.input`
   transform: translate(-5px, 1px);
+  margin: 0 5px 0 15px;
 `
 
 const StyledUl = styled.ul`
@@ -72,13 +85,14 @@ const StyledUl = styled.ul`
 `
 
 const StyledRadio = styled.div`
-  display: grid;
-  grid-template-columns: 20% 80%;
   padding: 8px;
   border-radius: 15px;
   background: #282c34;
   color: #61dafb;
   box-shadow: 0 2px 2px rgba(107, 91, 91, 0.3);
+  margin: -10px 0 30px 0;
+  display: flex;
+  justify-content: center;
 `
 
 const Grille = styled.div`
@@ -98,10 +112,7 @@ const StledImg = styled.img`
   border-radius: none;
   margin: 15px;
 `
-const StyledP = styled.p`
-  font-family: Noto Sans Mono;
-  color: white;
-`
+
 const StyledH3 = styled.h5`
   font-family: Noto Sans Mono;
   color: grey;
@@ -121,12 +132,6 @@ const WrapContent = styled.div`
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-`
-
-const StyledDiv1 = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: 7px;
 `
 
 const StyledDiv2 = styled.div`
