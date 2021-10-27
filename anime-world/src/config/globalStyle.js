@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 1rem auto;
       max-width: 1296px;
-     background: #16151d;
+     background: #e8e8e8;
     font-size: 14px;
     line-height: 1.5;
     color: #b8b8b8;
@@ -36,15 +36,3 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default GlobalStyle
-/* body {
-      margin: 1rem auto;
-      max-width: 1296px;
-     background: #16151d;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #b8b8b8;
-    margin: 0 auto;
-      position: relative;
-    min-height: 100%;
-      padding: 14px;
-    } */
