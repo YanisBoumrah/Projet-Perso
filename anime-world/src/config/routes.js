@@ -19,7 +19,6 @@ const Routes = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/categorie' component={Categorie} />
-        <Route exact path='/animeDetail' component={AnimeDetail} />
         <Route exact path='/recherche' component={Recherche} />
         <Redirect to='/' />
       </Switch>
@@ -28,3 +27,6 @@ const Routes = () => {
 }
 
 export default Routes
+
+/*<Route exact path='/animeDetail' component={AnimeDetail} />*/
+/*<Route exact path='/recherche' component={Recherche} /> */

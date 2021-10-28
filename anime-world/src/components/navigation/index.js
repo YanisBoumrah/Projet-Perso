@@ -15,11 +15,7 @@ const Navigation = () => {
           Categorie
         </NavLink>
       </NavL>
-      <NavL>
-        <NavLink exact to='/recherche' activeClassName='nav-active'>
-          Recherche
-        </NavLink>
-      </NavL>
+      
     </NavBar>
   )
 }
@@ -49,7 +45,15 @@ const NavL = styled.a`
 `
 
 export default Navigation
+/*
+<NavL>
+        <NavLink exact to='/recherche' activeClassName='nav-active'>
+          Recherche
+        </NavLink>
+      </NavL>
 
+
+*/
 /* .navigation {
   margin: 26px 0;
   display: flex;

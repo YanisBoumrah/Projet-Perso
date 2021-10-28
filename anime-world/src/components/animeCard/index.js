@@ -7,6 +7,10 @@ const AnimeCard = props => {
   return (
     <FormD>
       <Imgs src={anime.image_url} alt='img'></Imgs>
+      <input type='text' name='search'required />
+        <label for='search'>
+          <span>Search</span>
+        </label>
     </FormD>
   )
 }
@@ -16,9 +20,17 @@ const Imgs = styled.img`
   border-radius: 10px;
   margin-left: 50px;
 `
-const FormD = styled.div``
+const FormD = styled.div`
+
+`
 export default AnimeCard
 
+
+
+const StyledInput= styled.input`
+
+
+`
 /* useEffect(() => {
     axios({
       method: 'GET',

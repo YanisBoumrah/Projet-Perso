@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import AnimeCard from '../animeCard'
+import { AiOutlineSearch } from 'react-icons/ai'
 import styled from 'styled-components'
 const Manga = () => {
   const [anime, setAnime] = useState([])
@@ -38,13 +39,22 @@ const Manga = () => {
   return (
     <PageContainer>
       <StyledInput>
-        <StyledIn
-          type='text'
-          placeholder='Search... '
-          onChange={e => {
-            setSearch(e.target.value)
-          }}
-        />
+        <StyledTab>
+          <tr>
+            <td>
+              <StyledIn
+                type='text'
+                placeholder='Search... '
+                onChange={e => {
+                  setSearch(e.target.value)
+                }}
+              />
+            </td>
+            <td>
+              <AiOutlineSearch size='20' color='black' />
+            </td>
+          </tr>
+        </StyledTab>
       </StyledInput>
       <WrapContent>
         <Grille>
@@ -72,8 +82,42 @@ const Manga = () => {
 }
 
 export default Manga
-
 const StyledInput = styled.div`
+  border-radius: 15px;
+  background: #222222;
+  margin: auto;
+  margin-bottom: 20px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 300px;
+  border: 4px solid #222222;
+  padding: 0px 10px;
+  border-radius: 50px;
+`
+const StyledTab = styled.table`
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+`
+const StyledIn = styled.input`
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0px 5px;
+  border-radius: 50px;
+  background-color: #222222;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  :focus {
+    outline: none;
+  }
+`
+
+/*const StyledInput = styled.div`
   padding: 8px;
   border-radius: 15px;
   background: #222222;
@@ -84,11 +128,13 @@ const StyledInput = styled.div`
 `
 const StyledIn = styled.input`
   display: flex;
-`
+  width: 500px;
+  border:none;
+`*/
 
 const Grille = styled.div`
   max-width: auto;
-  width: 80%;
+  width: 100%;
   height: auto;
   margin: 30px auto;
   display: grid;

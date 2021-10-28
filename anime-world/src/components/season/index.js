@@ -46,7 +46,9 @@ const Season = () => {
       </StyledRadio>
       <CancelStyle>
         {selectedRadio && (
-          <h5 onClick={() => setSelectedRadio('')}>Annuler recherche</h5>
+          <StyledButton onClick={() => setSelectedRadio('')}>
+            <StyledP>Annuler recherche</StyledP>
+          </StyledButton>
         )}
       </CancelStyle>
       <WrapContent>
@@ -70,13 +72,28 @@ const Season = () => {
 export default Season
 
 const CancelStyle = styled.div`
-  margin: 0 5px 20px 15px;
-  width: 100%;
-`
+  display: flex;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: -10px;
 
+  justify-content: center;
+`
+const StyledButton = styled.button`
+  color: #222222;
+  border: 4px solid #222222;
+  border-radius: 50px;
+  width: 100%;
+  width: 150px;
+`
+const StyledP = styled.p`
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+`
 const StyledInput = styled.input`
-  transform: translate(-5px, 1px);
-  margin: 0 5px 0 15px;
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 10px;
 `
 
 const StyledUl = styled.ul`
