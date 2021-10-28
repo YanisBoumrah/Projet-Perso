@@ -5,19 +5,15 @@ const Season = () => {
   const [season, setSeason] = useState([])
   const [selectedRadio, setSelectedRadio] = useState('')
   const radios = ['Winter', 'Spring', 'Summer', 'Fall']
-  // exploitation de l'api
+
+  // call api
   useEffect(() => {
     axios({
       method: 'GET',
       url: 'https://api.jikan.moe/v3/user/nekomata1037/animelist/all'
+    }).then(response => {
+      setSeason(response.data.anime)
     })
-      .then(response => {
-        setSeason(response.data.anime)
-        console.log('api reçu !!!',response)
-      })
-      .catch(err => {
-        console.log(err)
-      })
   }, [])
 
   return (
@@ -40,6 +36,7 @@ const Season = () => {
           })}
         </StyledUl>
       </StyledRadio>
+
       <CancelStyle>
         {selectedRadio && (
           <StyledButton onClick={() => setSelectedRadio('')}>
@@ -47,6 +44,7 @@ const Season = () => {
           </StyledButton>
         )}
       </CancelStyle>
+
       <WrapContent>
         <Grille>
           {season
@@ -66,7 +64,9 @@ const Season = () => {
 }
 
 export default Season
+
 // Les différents styles
+
 const CancelStyle = styled.div`
   display: flex;
   margin: auto;
@@ -143,6 +143,7 @@ const PageContainer = styled.div`
 const WrapContent = styled.div`
   flex: 1;
   background: #222222;
+  border-radius: 15px;
 `
 
 const StyledDiv = styled.div`

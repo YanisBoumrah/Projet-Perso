@@ -15,10 +15,13 @@ const Navigation = () => {
           Categorie
         </NavLink>
       </NavL>
-      
     </NavBar>
   )
 }
+
+export default Navigation
+
+// styled components
 
 const NavBar = styled.div`
   margin: 60px 0 30px 0;
@@ -43,5 +46,3 @@ const NavL = styled.a`
     }
   }
 `
-
-export default Navigation

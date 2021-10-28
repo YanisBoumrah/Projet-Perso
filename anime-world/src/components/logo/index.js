@@ -11,6 +11,10 @@ const Logo = () => {
   )
 }
 
+export default Logo
+
+// styled components
+
 const LogoForm = styled.div`
   display: flex;
   position: absolute;
@@ -37,5 +41,3 @@ const StyledTxt = styled.h3`
   color: white;
   letter-spacing: 1px;
 `
-
-export default Logo

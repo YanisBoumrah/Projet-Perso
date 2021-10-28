@@ -8,23 +8,17 @@ const Manga = () => {
   const [sortedData, setSortedData] = useState([])
   const [search, setSearch] = useState('')
   const [playOnce, setPlayOnce] = useState(true)
-  
+
   useEffect(() => {
     if (playOnce) {
       axios({
         method: 'GET',
         url: 'https://api.jikan.moe/v3/user/nekomata1037/animelist/all'
-      })
-        .then(response => {
-          console.log(response)
-          setAnime(response.data.anime)
-          console.log('api reçu !!!', response)
+      }).then(response => {
+        setAnime(response.data.anime)
 
-          setPlayOnce(false)
-        })
-        .catch(err => {
-          console.log(err)
-        })
+        setPlayOnce(false)
+      })
     }
     const sortedAnime = () => {
       const animeObj = Object.keys(anime).map(i => anime[i])
@@ -70,7 +64,7 @@ const Manga = () => {
             })
             .map(animes => (
               <StyledDiv2 key={animes.mal_id}>
-                <StledImg src={animes.image_url}></StledImg>
+                <StyledImg src={animes.image_url}></StyledImg>
                 <StyledDiv>
                   <StyledH5>{animes.title}</StyledH5>
                 </StyledDiv>
@@ -118,7 +112,6 @@ const StyledIn = styled.input`
   }
 `
 
-
 const Grille = styled.div`
   max-width: auto;
   width: 100%;
@@ -130,7 +123,7 @@ const Grille = styled.div`
   grid-gap: 10px;
 `
 
-const StledImg = styled.img`
+const StyledImg = styled.img`
   max-width: 100px;
   height: auto;
   border-radius: none;
@@ -165,5 +158,4 @@ const StyledDiv = styled.div`
 const StyledDiv2 = styled.div`
   border-radius: 3px;
   box-shadow: 3px 3px 3px rgb(66, 64, 64), -3px -3px 3px rgba(0, 0, 0, 0.1);
-  
 `
