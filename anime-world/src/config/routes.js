@@ -9,7 +9,6 @@ import Home from '../screens/home'
 import GlobalStyle from './globalStyle'
 import Categorie from '../screens/categorie'
 import { Offline, Online } from 'react-detect-offline'
-import Loadingoff from '../screens/offline'
 const Routes = () => {
   return (
     <div>
