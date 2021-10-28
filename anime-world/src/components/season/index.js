@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import AnimeCard from '../animeCard'
 import styled from 'styled-components'
 const Season = () => {
   const [season, setSeason] = useState([])
   const [selectedRadio, setSelectedRadio] = useState('')
   const radios = ['Winter', 'Spring', 'Summer', 'Fall']
-
+  // exploitation de l'api
   useEffect(() => {
     axios({
       method: 'GET',
       url: 'https://api.jikan.moe/v3/user/nekomata1037/animelist/all'
     })
       .then(response => {
-        console.log(response)
         setSeason(response.data.anime)
-
-        console.log('api reçu !!!')
-        console.log(response)
+        console.log('api reçu !!!',response)
       })
       .catch(err => {
         console.log(err)
@@ -56,7 +52,7 @@ const Season = () => {
           {season
             .filter(animes => animes.season_name.includes(selectedRadio))
             .map(animes => (
-              <StyledDiv2>
+              <StyledDiv2 key={animes.mal_id}>
                 <StledImg src={animes.image_url}></StledImg>
                 <StyledDiv>
                   <StyledH5>{animes.title}</StyledH5>
@@ -70,7 +66,7 @@ const Season = () => {
 }
 
 export default Season
-
+// Les différents styles
 const CancelStyle = styled.div`
   display: flex;
   margin: auto;
@@ -114,7 +110,7 @@ const StyledRadio = styled.div`
 
 const Grille = styled.div`
   max-width: auto;
-  width: 80%;
+  width: 100%;
   height: auto;
   margin: 30px auto;
   display: grid;

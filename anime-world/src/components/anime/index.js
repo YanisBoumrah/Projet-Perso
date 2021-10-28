@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import AnimeCard from '../animeCard'
-import { AiOutlineSearch } from 'react-icons/ai'
 import styled from 'styled-components'
+import { AiOutlineSearch } from 'react-icons/ai'
+
 const Manga = () => {
   const [anime, setAnime] = useState([])
   const [sortedData, setSortedData] = useState([])
   const [search, setSearch] = useState('')
   const [playOnce, setPlayOnce] = useState(true)
+  
   useEffect(() => {
     if (playOnce) {
       axios({
@@ -68,7 +69,7 @@ const Manga = () => {
                 return animes
             })
             .map(animes => (
-              <StyledDiv2>
+              <StyledDiv2 key={animes.mal_id}>
                 <StledImg src={animes.image_url}></StledImg>
                 <StyledDiv>
                   <StyledH5>{animes.title}</StyledH5>
@@ -117,20 +118,6 @@ const StyledIn = styled.input`
   }
 `
 
-/*const StyledInput = styled.div`
-  padding: 8px;
-  border-radius: 15px;
-  background: #222222;
-  box-shadow: 0 2px 2px rgba(107, 91, 91, 0.3);
-  margin: -10px 0 30px 0;
-  display: flex;
-  justify-content: center;
-`
-const StyledIn = styled.input`
-  display: flex;
-  width: 500px;
-  border:none;
-`*/
 
 const Grille = styled.div`
   max-width: auto;
@@ -178,4 +165,5 @@ const StyledDiv = styled.div`
 const StyledDiv2 = styled.div`
   border-radius: 3px;
   box-shadow: 3px 3px 3px rgb(66, 64, 64), -3px -3px 3px rgba(0, 0, 0, 0.1);
+  
 `

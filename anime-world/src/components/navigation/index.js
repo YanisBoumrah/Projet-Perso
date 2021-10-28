@@ -45,35 +45,3 @@ const NavL = styled.a`
 `
 
 export default Navigation
-/*
-<NavL>
-        <NavLink exact to='/recherche' activeClassName='nav-active'>
-          Recherche
-        </NavLink>
-      </NavL>
-
-
-*/
-/* .navigation {
-  margin: 26px 0;
-  display: flex;
-
-  a {
-    margin: 10px;
-    padding: 10px;
-    position: relative;
-  }
-  .nav-active {
-    &::after {
-      content: "";
-      width: 85%;
-      height: 5px;
-      background: $color-1;
-      position: absolute;
-      bottom: 1px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-}
-*/
