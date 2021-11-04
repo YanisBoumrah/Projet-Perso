@@ -9,6 +9,7 @@ import Home from '../screens/home'
 import GlobalStyle from './globalStyle'
 import Categorie from '../screens/categorie'
 import { Offline, Online } from 'react-detect-offline'
+import OfflinePage from '../components/offlinePage'
 const Routes = () => {
   return (
     <div>
@@ -22,7 +23,9 @@ const Routes = () => {
             <Redirect to='/' />
           </Switch>
         </Online>
-        <Offline>Only shown offline (surprise!)</Offline>
+        <Offline>
+          <OfflinePage></OfflinePage>
+        </Offline>
       </Router>
     </div>
   )

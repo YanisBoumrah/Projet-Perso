@@ -18,6 +18,9 @@ const Season = () => {
 
   return (
     <PageContainer>
+      
+      // la div qui contient les boutton radio
+      
       <StyledRadio className='sort-container'>
         <StyledUl>
           {radios.map(radio => {
@@ -37,6 +40,8 @@ const Season = () => {
         </StyledUl>
       </StyledRadio>
 
+      // la div qui qui retourne le boutton annuler la recherche
+
       <CancelStyle>
         {selectedRadio && (
           <StyledButton onClick={() => setSelectedRadio('')}>
@@ -44,6 +49,8 @@ const Season = () => {
           </StyledButton>
         )}
       </CancelStyle>
+      
+      // la div qui qui retourne les animes trier selon la categorie
 
       <WrapContent>
         <Grille>
