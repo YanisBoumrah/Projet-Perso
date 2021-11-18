@@ -32,7 +32,6 @@ const Manga = () => {
   }, [anime, playOnce])
 
   return (
-    // la div qui contient la bare de recherche 
     <PageContainer>
       <StyledInput>
         <StyledTab>
@@ -53,7 +52,6 @@ const Manga = () => {
         </StyledTab>
       </StyledInput>
 
-// la div qui affiche la grille d'anime
 
       <WrapContent>
         <Grille>
