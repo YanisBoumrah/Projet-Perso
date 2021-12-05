@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import { useHistory } from 'react-router'
+
 const Season = () => {
   const [season, setSeason] = useState([])
   const [selectedRadio, setSelectedRadio] = useState('')
   const radios = ['Winter', 'Spring', 'Summer', 'Fall']
+  const history = useHistory()
 
+  const handleClick = key => {
+    history.push(`/details/${key}`)
+  }
   useEffect(() => {
     axios({
       method: 'GET',
@@ -47,8 +53,13 @@ const Season = () => {
           {season
             .filter(animes => animes.season_name.includes(selectedRadio))
             .map(animes => (
-              <StyledDiv2 key={animes.mal_id}>
-                <StledImg src={animes.image_url}></StledImg>
+              <StyledDiv2
+                key={animes.mal_id}
+                onClick={() => {
+                  handleClick(animes.mal_id)
+                }}
+              >
+                <StyledImg src={animes.image_url}></StyledImg>
                 <StyledDiv>
                   <StyledH5>{animes.title}</StyledH5>
                 </StyledDiv>
@@ -64,6 +75,10 @@ export default Season
 
 // Les différents styles
 
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 const CancelStyle = styled.div`
   display: flex;
   margin: auto;
@@ -105,22 +120,40 @@ const StyledRadio = styled.div`
   justify-content: center;
 `
 
+const WrapContent = styled.div``
+
 const Grille = styled.div`
   max-width: auto;
   width: 100%;
   height: auto;
-  margin: 30px auto;
+  margin: 20px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 130px);
+  grid-template-columns: repeat(auto-fill, 300px);
   justify-content: center;
   grid-gap: 10px;
 `
+const StyledDiv2 = styled.div`
+  border-radius: 10px;
+  display: flex;
+  flex: 4 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  background: #3d3939;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.12);
+    box-shadow: 8px 8px 8px black;
 
-const StledImg = styled.img`
-  max-width: 100px;
+    z-index: 2;
+  }
+`
+
+const StyledImg = styled.img`
+  width: 100%;
   height: auto;
-  border-radius: none;
-  margin: 15px;
+  border-radius: 10px;
 `
 
 const StyledH5 = styled.h5`
@@ -131,24 +164,8 @@ const StyledH5 = styled.h5`
   text-overflow: ellipsis;
 `
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`
-
-const WrapContent = styled.div`
-  flex: 1;
-  background: #222222;
-  border-radius: 15px;
-`
-
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
 `
 
-const StyledDiv2 = styled.div`
-  border-radius: 3px;
-  box-shadow: 3px 3px 3px rgb(66, 64, 64), -3px -3px 3px rgba(0, 0, 0, 0.1);
-`

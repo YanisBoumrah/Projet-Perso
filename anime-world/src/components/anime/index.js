@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router'
 import axios from 'axios'
 import styled from 'styled-components'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -8,7 +9,11 @@ const Manga = () => {
   const [sortedData, setSortedData] = useState([])
   const [search, setSearch] = useState('')
   const [playOnce, setPlayOnce] = useState(true)
+  const history = useHistory()
 
+  const handleClick = key => {
+    history.push(`/details/${key}`)
+  }
   useEffect(() => {
     if (playOnce) {
       axios({
@@ -52,7 +57,6 @@ const Manga = () => {
         </StyledTab>
       </StyledInput>
 
-
       <WrapContent>
         <Grille>
           {sortedData
@@ -65,7 +69,12 @@ const Manga = () => {
                 return animes
             })
             .map(animes => (
-              <StyledDiv2 key={animes.mal_id}>
+              <StyledDiv2
+                key={animes.mal_id}
+                onClick={() => {
+                  handleClick(animes.mal_id)
+                }}
+              >
                 <StyledImg src={animes.image_url}></StyledImg>
                 <StyledDiv>
                   <StyledH5>{animes.title}</StyledH5>
@@ -79,20 +88,27 @@ const Manga = () => {
 }
 
 export default Manga
-const StyledInput = styled.div`
-  border-radius: 15px;
-  background: #222222;
-  margin: auto;
-  margin-bottom: 20px;
 
-  width: 100%;
+// styled components
+
+const PageContainer = styled.div`
   display: flex;
-  justify-content: center;
-  position: relative;
-  width: 300px;
-  border: 4px solid #222222;
-  padding: 0px 10px;
+  flex-direction: column;
+`
+
+const StyledInput = styled.div`
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0px 5px;
   border-radius: 50px;
+  background-color: #222222;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  :focus {
+    outline: none;
+  }
 `
 const StyledTab = styled.table`
   width: 100%;
@@ -113,23 +129,40 @@ const StyledIn = styled.input`
     outline: none;
   }
 `
+const WrapContent = styled.div``
 
 const Grille = styled.div`
   max-width: auto;
   width: 100%;
   height: auto;
-  margin: 30px auto;
+  margin: 20px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 130px);
+  grid-template-columns: repeat(auto-fill, 300px);
   justify-content: center;
   grid-gap: 10px;
 `
+const StyledDiv2 = styled.div`
+  border-radius: 10px;
+  display: flex;
+  flex: 4 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  background: #3d3939;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.12);
+    box-shadow: 8px 8px 8px black;
+
+    z-index: 2;
+  }
+`
 
 const StyledImg = styled.img`
-  max-width: 100px;
+  width: 100%;
   height: auto;
-  border-radius: none;
-  margin: 15px;
+  border-radius: 10px;
 `
 
 const StyledH5 = styled.h5`
@@ -140,24 +173,7 @@ const StyledH5 = styled.h5`
   text-overflow: ellipsis;
 `
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`
-
-const WrapContent = styled.div`
-  flex: 1;
-  background: #222222;
-  border-radius: 15px;
-`
-
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-`
-
-const StyledDiv2 = styled.div`
-  border-radius: 3px;
-  box-shadow: 3px 3px 3px rgb(66, 64, 64), -3px -3px 3px rgba(0, 0, 0, 0.1);
 `

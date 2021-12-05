@@ -11,11 +11,10 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: 1rem auto;
-    max-width: 1200px;
-    background: #e8e8e8;
+    max-width: 1600px;
+    background-color: ${props=>props.theme.background};
     font-size: 17px;
     line-height: 1.5;
-    color: #b8b8b8;
     margin: 0 auto;
       position: relative;
     min-height: 100%;
